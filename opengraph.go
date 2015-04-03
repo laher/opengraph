@@ -61,7 +61,7 @@ func Extract(doc io.Reader) ([]MetaData, error) {
 			return tags, nil
 		}
 
-		if t.Type == html.SelfClosingTagToken && t.Data == "meta" {
+		if (t.Type == html.SelfClosingTagToken || t.Type == html.StartTagToken) && t.Data == "meta" {
 			var prop, cont string
 			for _, a := range t.Attr {
 				switch a.Key {
